@@ -18,18 +18,11 @@ def userList( pg ):
  
  print( f"THE LIST OF USERS IS {pages} PAGES.\n" )
  
- if( pg != pages ):
-  for i in range( USERS_PG * ( pg - 1 ), USERS_PG * pg ): 
-   name   = users[i]["name"]
-   city   = users[i]["address"]["city"]
-   status = "(O)" if users[i]["online"] else "(-)"
-   print( f"{( i + 1 ):2} - {name:25} ( {city:15} ) {status}" )
- else:
-  for i in range( USERS_PG * ( pg - 1 ), len( users )): 
-   name   = users[i]["name"]
-   city   = users[i]["address"]["city"]
-   status = "(O)" if users[i]["online"] else "(-)"
-   print( f"{( i + 1 ):2} - {name:25} ( {city:15} ) {status}" )
+ for i in range( USERS_PG * ( pg - 1 ), min( USERS_PG * pg, len( users ))): 
+  name   = users[i]["name"]
+  city   = users[i]["address"]["city"]
+  status = "(O)" if users[i]["online"] else "(-)"
+  print( f"{( i + 1 ):2} - {name:25} ( {city:15} ) {status}" )
 
  print( "-" * 54 )
 
